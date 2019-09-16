@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Statistics" max_length="40" name="x_baes2_qi_portal_statistics" type="collection">
+        <element label="Activity" max_length="32" name="activity" reference="x_baes2_qi_portal_activity" type="reference"/>
+        <element label="Activity Group" max_length="32" name="activity_group" reference="x_baes2_qi_portal_activity_group" type="reference"/>
+        <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element label="Project" max_length="32" name="project" reference="x_baes2_qi_portal_project" type="reference"/>
+        <element default="No Entry" label="RAG (JAN)" max_length="32" name="rag_01" reference="x_baes2_qi_portal_rag_status" type="reference"/>
+        <element default="No Entry" label="RAG (FEB)" max_length="32" name="rag_02" reference="x_baes2_qi_portal_rag_status" type="reference"/>
+        <element default="No Entry" label="RAG (MAR)" max_length="32" name="rag_03" reference="x_baes2_qi_portal_rag_status" type="reference"/>
+        <element default="No Entry" label="RAG (APR)" max_length="32" name="rag_04" reference="x_baes2_qi_portal_rag_status" type="reference"/>
+        <element default="No Entry" label="RAG (MAY)" max_length="32" name="rag_05" reference="x_baes2_qi_portal_rag_status" type="reference"/>
+        <element default="No Entry" label="RAG (JUN)" max_length="32" name="rag_06" reference="x_baes2_qi_portal_rag_status" type="reference"/>
+        <element default="No Entry" label="RAG (JUL)" max_length="32" name="rag_07" reference="x_baes2_qi_portal_rag_status" type="reference"/>
+        <element default="No Entry" label="RAG (AUG)" max_length="32" name="rag_08" reference="x_baes2_qi_portal_rag_status" type="reference"/>
+        <element default="No Entry" label="RAG (SEP)" max_length="32" name="rag_09" reference="x_baes2_qi_portal_rag_status" type="reference"/>
+        <element default="No Entry" label="RAG (OCT)" max_length="32" name="rag_10" reference="x_baes2_qi_portal_rag_status" type="reference"/>
+        <element default="No Entry" label="RAG (NOV)" max_length="32" name="rag_11" reference="x_baes2_qi_portal_rag_status" type="reference"/>
+        <element default="No Entry" label="RAG (DEC)" max_length="32" name="rag_12" reference="x_baes2_qi_portal_rag_status" type="reference"/>
+        <element label="Score (JAN)" max_length="20" name="score_01" type="decimal"/>
+        <element label="Score (FEB)" max_length="20" name="score_02" type="decimal"/>
+        <element label="Score (MAR)" max_length="20" name="score_03" type="decimal"/>
+        <element label="Score (APR)" max_length="20" name="score_04" type="decimal"/>
+        <element label="Score (MAY)" max_length="20" name="score_05" type="decimal"/>
+        <element label="Score (JUN)" max_length="20" name="score_06" type="decimal"/>
+        <element label="Score (JUL)" max_length="20" name="score_07" type="decimal"/>
+        <element label="Score (AUG)" max_length="20" name="score_08" type="decimal"/>
+        <element label="Score (SEP)" max_length="20" name="score_09" type="decimal"/>
+        <element label="Score (OCT)" max_length="20" name="score_10" type="decimal"/>
+        <element label="Score (NOV)" max_length="20" name="score_11" type="decimal"/>
+        <element label="Score (DEC)" max_length="20" name="score_12" type="decimal"/>
+        <element label="Summary" max_length="1000" name="summary" type="string_full_utf8"/>
+        <element label="Target (JAN)" max_length="20" name="target_01" type="decimal"/>
+        <element label="Target (FEB)" max_length="20" name="target_02" type="decimal"/>
+        <element label="Target (MAR)" max_length="20" name="target_03" type="decimal"/>
+        <element label="Target (APR)" max_length="20" name="target_04" type="decimal"/>
+        <element label="Target (MAY)" max_length="20" name="target_05" type="decimal"/>
+        <element label="Target (JUN)" max_length="20" name="target_06" type="decimal"/>
+        <element label="Target (JUL)" max_length="20" name="target_07" type="decimal"/>
+        <element label="Target (AUG)" max_length="20" name="target_08" type="decimal"/>
+        <element label="Target (SEP)" max_length="20" name="target_09" type="decimal"/>
+        <element label="Target (OCT)" max_length="20" name="target_10" type="decimal"/>
+        <element label="Target (NOV)" max_length="20" name="target_11" type="decimal"/>
+        <element label="Target (DEC)" max_length="20" name="target_12" type="decimal"/>
+        <element label="Theme" max_length="32" name="theme" reference="x_baes2_qi_portal_theme" type="reference"/>
+        <element display="true" label="Title" max_length="256" name="title" type="string_full_utf8"/>
+        <element choice="1" label="Type" mandatory="true" max_length="40" name="type" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Activity" value="activity"/>
+                <element inactive_on_update="false" label="Activity Group" value="activity_group"/>
+                <element inactive_on_update="false" label="Project" value="project"/>
+                <element inactive_on_update="false" label="Theme" value="theme"/>
+            </choice>
+        </element>
+        <element attributes="format=none" label="Year" mandatory="true" max_length="4" name="year" type="integer"/>
+        <index name="index">
+            <element name="rag_08"/>
+        </index>
+        <index name="index2">
+            <element name="rag_07"/>
+        </index>
+        <index name="index3">
+            <element name="rag_06"/>
+        </index>
+        <index name="index4">
+            <element name="rag_05"/>
+        </index>
+        <index name="index5">
+            <element name="activity"/>
+        </index>
+        <index name="index6">
+            <element name="rag_04"/>
+        </index>
+        <index name="index7">
+            <element name="rag_03"/>
+        </index>
+        <index name="index8">
+            <element name="rag_02"/>
+        </index>
+        <index name="index9">
+            <element name="rag_01"/>
+        </index>
+        <index name="index10">
+            <element name="rag_12"/>
+        </index>
+        <index name="index11">
+            <element name="rag_11"/>
+        </index>
+        <index name="index12">
+            <element name="project"/>
+        </index>
+        <index name="index13">
+            <element name="rag_10"/>
+        </index>
+        <index name="index14">
+            <element name="activity_group"/>
+        </index>
+        <index name="index15">
+            <element name="theme"/>
+        </index>
+        <index name="index16">
+            <element name="rag_09"/>
+        </index>
+    </element>
+</database>

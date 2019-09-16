@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($scope, $sce, spUtil, $location) {
+
+	var c = this;
+	$scope.data.sys_id = $sce.trustAsHtml($scope.data.sys_id);
+	
+	// Setup Record Watcher For Associated Tasks
+	if ($scope.data.task_filter) {
+		spUtil.recordWatch($scope, 'x_baes2_qi_portal_improvement_tasks', $scope.data.task_filter, function(record){
+			$scope.server.get({
+				action: "updateTasks",
+				filter: $scope.data.task_filter
+			}).then(function(response) {
+				$scope.data.tasks =	response.data.tasks;						
+			});
+		});
+	}
+	
+	/* Define Associated Task Parameters
+	var associatedTaskOptions = {"table":"x_baes2_qi_portal_improvement_tasks", "view":"default"};	
+	spUtil.get("data-table-from-url", associatedTaskOptions).then(function(response) {
+		response.options.show_new = true;
+		response.options.enable_filter = false;
+		response.options.filter = $scope.data.task_filter;
+		response.options.show_breadcrumbs = false;		
+		response.data.dataTableWidget.options.show_keywords=false;
+		$scope.associatedTasksWidget = response;
+	});*/	
+	
+	c.getHTML = function(field) {
+		return $sce.trustAsHtml(field);
+	};
+	
+	$scope.newTaskRecord = function(activity) {
+		var url = $location.protocol() + '://' + $location.host() + $location.path() + '?id=form&table=x_baes2_qi_portal_improvement_tasks&sys_id=-1&activity=' + activity;
+		window.open(url);		
+	};
+	
+	$scope.editTaskRecord = function(task) {
+		var url = $location.protocol() + '://' + $location.host() + $location.path() + '?id=form&table=x_baes2_qi_portal_improvement_tasks&sys_id=' + task.sys_id;
+		window.open(url);
+	};
+	
+
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.timeline {&#13;
+  list-style: none;&#13;
+  padding: 20px 10px 20px 10px;&#13;
+  position: relative;&#13;
+}&#13;
+&#13;
+.timeline:before {&#13;
+  top: 0;&#13;
+  bottom: 0;&#13;
+  position: absolute;&#13;
+  content: " ";&#13;
+  width: 3px;&#13;
+  background-color: #eeeeee;&#13;
+  left: 50%;&#13;
+  margin-left: -1.5px;&#13;
+}&#13;
+&#13;
+.timeline &gt; li {&#13;
+  margin-bottom: 20px;&#13;
+  position: relative;&#13;
+}&#13;
+&#13;
+.timeline &gt; li:before,&#13;
+.timeline &gt; li:after {&#13;
+  content: " ";&#13;
+  display: table;&#13;
+}&#13;
+&#13;
+.timeline &gt; li:after {&#13;
+  clear: both;&#13;
+}&#13;
+&#13;
+.timeline &gt; li:before,&#13;
+.timeline &gt; li:after {&#13;
+  content: " ";&#13;
+  display: table;&#13;
+}&#13;
+&#13;
+.timeline &gt; li:after {&#13;
+  clear: both;&#13;
+}&#13;
+&#13;
+.timeline &gt; li &gt; .timeline-panel {&#13;
+  width: 46%;&#13;
+  float: left;&#13;
+  border: 1px solid #d4d4d4;&#13;
+  border-radius: 2px;&#13;
+  padding: 20px;&#13;
+  position: relative;&#13;
+  -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);&#13;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);&#13;
+  background-color: white;&#13;
+}&#13;
+&#13;
+.timeline &gt; li &gt; .timeline-panel:before {&#13;
+  position: absolute;&#13;
+  top: 26px;&#13;
+  right: -15px;&#13;
+  display: inline-block;&#13;
+  border-top: 15px solid transparent;&#13;
+  border-left: 15px solid #ccc;&#13;
+  border-right: 0 solid #ccc;&#13;
+  border-bottom: 15px solid transparent;&#13;
+  content: " ";&#13;
+}&#13;
+&#13;
+.timeline &gt; li &gt; .timeline-panel:after {&#13;
+  position: absolute;&#13;
+  top: 27px;&#13;
+  right: -14px;&#13;
+  display: inline-block;&#13;
+  border-top: 14px solid transparent;&#13;
+  border-left: 14px solid #fff;&#13;
+  border-right: 0 solid #fff;&#13;
+  border-bottom: 14px solid transparent;&#13;
+  content: " ";&#13;
+}&#13;
+&#13;
+.timeline &gt; li &gt; .timeline-badge {&#13;
+  color: #fff;&#13;
+  width: 50px;&#13;
+  height: 50px;&#13;
+  line-height: 50px;&#13;
+  font-size: 1.4em;&#13;
+  text-align: center;&#13;
+  position: absolute;&#13;
+  top: 16px;&#13;
+  left: 50%;&#13;
+  margin-left: -25px;&#13;
+  background-color: #999999;&#13;
+  z-index: 100;&#13;
+  border-top-right-radius: 50%;&#13;
+  border-top-left-radius: 50%;&#13;
+  border-bottom-right-radius: 50%;&#13;
+  border-bottom-left-radius: 50%;&#13;
+}&#13;
+&#13;
+.timeline &gt; li.timeline-inverted &gt; .timeline-panel {&#13;
+  float: right;&#13;
+}&#13;
+&#13;
+.timeline &gt; li.timeline-inverted &gt; .timeline-panel:before {&#13;
+  border-left-width: 0;&#13;
+  border-right-width: 15px;&#13;
+  left: -15px;&#13;
+  right: auto;&#13;
+}&#13;
+&#13;
+.timeline &gt; li.timeline-inverted &gt; .timeline-panel:after {&#13;
+  border-left-width: 0;&#13;
+  border-right-width: 14px;&#13;
+  left: -14px;&#13;
+  right: auto;&#13;
+}&#13;
+&#13;
+.timeline-badge.primary {&#13;
+  background-color: #2e6da4 !important;&#13;
+}&#13;
+&#13;
+.timeline-badge.success {&#13;
+  background-color: #3f903f !important;&#13;
+}&#13;
+&#13;
+.timeline-badge.warning {&#13;
+  background-color: #f0ad4e !important;&#13;
+}&#13;
+&#13;
+.timeline-badge.danger {&#13;
+  background-color: #d9534f !important;&#13;
+}&#13;
+&#13;
+.timeline-badge.info {&#13;
+  background-color: #5bc0de !important;&#13;
+}&#13;
+&#13;
+.timeline-title {&#13;
+  margin-top: 0;&#13;
+  color: inherit;&#13;
+}&#13;
+&#13;
+.timeline-shortdesc {&#13;
+ text-size: +1; &#13;
+}&#13;
+&#13;
+.timeline-body &gt; p,&#13;
+.timeline-body &gt; ul {&#13;
+  margin-bottom: 0;&#13;
+}&#13;
+&#13;
+.timeline-body &gt; p + p {&#13;
+  margin-top: 5px;&#13;
+}&#13;
+&#13;
+li .active {&#13;
+  background-color: #eeeeee;&#13;
+}&#13;
+&#13;
+.month {&#13;
+  float: left;&#13;
+  margin: 0px 1px 0px 1px; &#13;
+  width: 20.75px; &#13;
+  max-width: 20.75px; &#13;
+  min-width: 20.75px; &#13;
+  height: 30px; &#13;
+  border-radius: 3px;&#13;
+  text-align: center;&#13;
+}&#13;
+&#13;
+.multiple-issues {&#13;
+  position: relative;&#13;
+  top: -5px;&#13;
+}&#13;
+&#13;
+.nav &gt; li {&#13;
+  width: 50%;&#13;
+  text-align: center;&#13;
+}&#13;
+&#13;
+.nav-tabs &gt; li &gt; a {&#13;
+  	color: #555555;&#13;
+    margin-right: 2px;&#13;
+    line-height: 1.42857;&#13;
+    border: 1px solid #ddd;&#13;
+    border-radius: 4px 4px 0 0;&#13;
+}&#13;
+ &#13;
+.nav-tabs &gt; li.active &gt; a {&#13;
+    color: #555555;&#13;
+    background-color: #eee;&#13;
+    border: 1px solid #ddd;&#13;
+    border-bottom-color: transparent;&#13;
+    cursor: default;&#13;
+}&#13;
+&#13;
+.tab-pane {&#13;
+  padding-top: 10px;&#13;
+}&#13;
+&#13;
+.label {&#13;
+  border-radius: 1em;&#13;
+  font-weight: normal;&#13;
+  font-size: 90%;&#13;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>quality_improvement_timeline_v2</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Quality Improvement Timeline v2</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+	
+	data.sys_id = input.sys_id;
+	
+	var statsgr = new GlideRecord("x_baes2_qi_portal_statistics");
+	if (statsgr.get(data.sys_id)) {
+		data.year = statsgr.getValue('year');
+		data.type = statsgr.getValue('type');		
+		data.activity = statsgr.getValue('activity');
+		
+		data.theme_months = [];
+		data.project_months = [];
+		data.activity_group_months = [];
+		data.months = [];
+		data.year1_months = [];
+		data.year2_months = [];		
+		
+		data.task_filter = 'active=true';
+		
+		switch(data.type) {
+			case 'theme' :
+				console.log('theme');
+				data.theme = statsgr.theme;		
+				data.theme_name = statsgr.getDisplayValue('theme.title');
+				data.theme_description = statsgr.getDisplayValue('theme.description');				
+				data.task_filter +=	 '^activity.activity_group.project.theme=' + data.theme;			
+				break;				
+			case 'project' :
+				console.log('project');
+				data.theme = statsgr.project.theme;		
+				data.theme_name = statsgr.getDisplayValue('project.theme.title');
+				data.theme_description = statsgr.getDisplayValue('project.theme.description');				
+				data.project = statsgr.project;		
+				data.project_name = statsgr.getDisplayValue('project.title');
+				data.project_description = statsgr.getDisplayValue('project.description');				
+				data.theme_months = getLevelStats(data.theme, null, null, null, 'theme', data.year, 0);
+				data.task_filter +=	 '^activity.activity_group.project=' + data.project;			
+				break;
+			case 'activity_group' :
+				console.log('activity_group');				
+				data.theme = statsgr.activity_group.project.theme;		
+				data.theme_name = statsgr.getDisplayValue('activity_group.project.theme.title');
+				data.theme_description = statsgr.getDisplayValue('activity_group.project.theme.description');				
+				data.project = statsgr.activity_group.project;		
+				data.project_name = statsgr.getDisplayValue('activity_group.project.title');
+				data.project_description = statsgr.getDisplayValue('activity_group.project.description');				
+				data.activity_group = statsgr.activity_group;		
+				data.activity_group_name = statsgr.getDisplayValue('activity_group.title');
+				data.activity_group_description = statsgr.getDisplayValue('activity_group.description');				
+				data.theme_months = getLevelStats(data.theme, null, null, null, 'theme', data.year, 0);
+				data.project_months = getLevelStats(null, data.project, null, null, 'project', data.year, 0);
+				data.task_filter +=	 '^activity.activity_group=' + data.activity_group;				
+				break;
+			case 'activity' :
+				console.log('activity');				
+				data.theme = statsgr.activity.activity_group.project.theme;		
+				data.theme_name = statsgr.getDisplayValue('activity.activity_group.project.theme.title');
+				data.theme_description = statsgr.getDisplayValue('activity.activity_group.project.theme.description');				
+				data.project = statsgr.activity.activity_group.project;		
+				data.project_name = statsgr.getDisplayValue('activity.activity_group.project.title');
+				data.project_description = statsgr.getDisplayValue('activity.activity_group.project.description');				
+				data.activity_group = statsgr.activity.activity_group;		
+				data.activity_group_name = statsgr.getDisplayValue('activity.activity_group.title');
+				data.activity_group_description = statsgr.getDisplayValue('activity.activity_group.description');
+				data.activity_description = statsgr.getDisplayValue('activity.description');
+				data.theme_months = getLevelStats(data.theme, null, null, null, 'theme', data.year, 0);
+				data.project_months = getLevelStats(null, data.project, null, null, 'project', data.year, 0);			
+				data.activity_group_months = getLevelStats(null, null, data.activity_group, null, 'activity_group', data.year, 0);
+				data.task_filter +=	 '^activity=' + data.activity;				
+				break;				
+		}	
+		
+		data.previous_status = '';
+		data.previous_status_msg = '';		
+		data.previous_status_background_color = '';
+		data.previous_status_font_color = '';		
+		
+		data.current_status = '';
+		data.current_status_msg = '';		
+		data.current_status_background_color = '';
+		data.current_status_font_color = '';
+
+		var gdt = new GlideDateTime();
+		var curr_year = gdt.getYearLocalTime();		
+		var curr_month = gdt.getMonthLocalTime();
+		
+		for (var i = 1; i <= 12; i++) {
+			var month_no = 'rag_';
+			var target_no = 'target_';			
+			if (i > 9) {
+				month_no += i;
+				target_no += i;				
+			} else {
+				month_no += '0' + i;
+				target_no += '0' + i;				
+			}
+			var month_status = statsgr.getDisplayValue(month_no);
+			var background = month_no + '.background_color';
+			var font = month_no + '.font_color';			
+			var month_status_background_color = statsgr.getDisplayValue(background);
+			// Default If No Status
+			if (!month_status_background_color) {
+				month_status_background_color = '#e6e8ea';
+			}
+			var month_status_font_color = statsgr.getDisplayValue(font);
+			var font = month_no + '.font_color';
+			var month_status_font_color = statsgr.getDisplayValue(font);
+			var month_target = statsgr.getDisplayValue(target_no);			
+			
+			var month = {};
+			var month_name = getMonthName(i);
+			var month_summary = statsgr.getDisplayValue('summary');			
+			month.msg = month_name + ' ' + statsgr.year + ' - ' + month_status;
+			if (month_summary) {
+				month.msg += '</br></br>Summary: </br>' + month_summary;
+			}
+			if (i == curr_month) {
+				month.border = '2px solid black';
+			} else {
+				month.border = '2px solid transparent';					
+			}			
+			month.background_color = month_status_background_color;
+			month.font_color = month_status_font_color;			
+			month.target = month_target;			
+			data.months.push(month);			
+			
+			// Set Latest Status
+			if (month_status != '' && month_status != 'No Entry') {
+				if (data.current_status) {
+					data.previous_status = data.current_status;
+					data.previous_status_msg = data.current_status_msg;					
+					data.previous_status_background_color = data.current_status_background_color;
+					data.previous_status_font_color = data.current_status_font_color;					
+				}
+				data.current_status = month_status;        				
+				data.current_status_msg = month_name + ' ' + statsgr.year;
+				data.current_status_background_color = month_status_background_color;
+				data.current_status_font_color = month_status_font_color;				
+			}		
+		}
+		// 1 Years Forward Stats? 
+		data.year1_months = getLevelStats(data.theme, data.project, data.activity_group, data.activity, data.type, data.year, 1);		
+		// 2 Years Forward Stats? 
+		data.year2_months = getLevelStats(data.theme, data.project, data.activity_group, data.activity, data.type, data.year, 2);
+		
+		// Initial Load Of Task Data
+		getTasks();
+	} else {
+		data.months = [];
+		data.activity_group_name = 'Unknown';
+		data.project_name = 'Unknown';
+		data.theme_name = 'Unknown';
+		data.current_status = '';		
+	}
+	
+	// Revise Details For Upated Record
+	if (input && input.action == "updateTasks") {	
+		// Refresh Task Data
+		data.task_filter = input.filter;
+		getTasks();		
+	}	
+			
+	function getLevelStats(theme, project, activity_group, activity, type, yearnow, yearsforward) {
+		//console.log('TIMELINE Theme= ' + theme + '  Project= ' + project + '  Activity Group= ' + activity_group + '  Activity= ' + activity + '  Type= ' + type + '  Year= ' + yearnow + '  Years Forward= ' + yearsforward);		
+		var level_months = [];
+		var gdt = new GlideDateTime();
+		var curr_year = gdt.getYearLocalTime();		
+		var curr_month = gdt.getMonthLocalTime();		
+		var year = parseInt(yearnow) + yearsforward;
+		var statsgr = new GlideRecord('x_baes2_qi_portal_statistics');
+		switch(type) {
+			case 'theme' :
+				statsgr.addQuery('theme', theme);
+				statsgr.addNullQuery('project');
+				statsgr.addNullQuery('activity_group');
+				statsgr.addNullQuery('activity');								
+				break;
+			case 'project' :
+				statsgr.addNullQuery('theme');
+				statsgr.addQuery('project', project);
+				statsgr.addNullQuery('activity_group');
+				statsgr.addNullQuery('activity');								
+				break;
+			case 'activity_group' :
+				statsgr.addNullQuery('theme');
+				statsgr.addNullQuery('project');
+				statsgr.addQuery('activity_group', activity_group);
+				statsgr.addNullQuery('activity');								
+				break;
+			case 'activity' :
+				statsgr.addNullQuery('theme');
+				statsgr.addNullQuery('project');
+				statsgr.addNullQuery('activity_group');
+				statsgr.addQuery('activity', activity);                				
+				break;                
+		}		
+        statsgr.addQuery('type', type);
+        statsgr.addQuery('year', year);				
+		statsgr.query();
+		if (statsgr.next()) {		
+			for (var i = 1; i <= 12; i++) {
+				var month_no = 'rag_';
+				var target_no = 'target_';			
+				if (i > 9) {
+					month_no += i;
+					target_no += i;				
+				} else {
+					month_no += '0' + i;
+					target_no += '0' + i;				
+				}
+				var month_status = statsgr.getDisplayValue(month_no);
+				var background = month_no + '.background_color';
+				var font = month_no + '.font_color';				
+				var month_status_background_color = statsgr.getDisplayValue(background);
+				// Default If No Status
+				if (!month_status_background_color) {
+					month_status_background_color = '#e6e8ea';
+				}
+				var month_status_font_color = statsgr.getDisplayValue(font);				
+				var font = month_no + '.font_color';
+				var month_status_font_color = statsgr.getDisplayValue(font);
+				var month_target = statsgr.getDisplayValue(target_no);			
+
+				var month = {};
+				var month_name = getMonthName(i);
+				var month_summary = statsgr.getDisplayValue('summary');			
+				month.msg = month_name + ' ' + statsgr.year + ' - ' + month_status;
+				if (month_summary) {
+					month.msg += '</br></br>Summary: </br>' + month_summary;
+				}
+				if (year == curr_year && i == curr_month) {
+					month.border = '2px solid black';
+				} else {
+					month.border = '2px solid transparent';					
+				}				
+				month.background_color = month_status_background_color;
+				month.font_color = month_status_font_color;				
+				month.target = month_target;			
+				level_months.push(month);					
+			}		
+		}		
+		return level_months;
+	}	
+	
+	function getMonthName(month) {
+		switch(month) {
+			case 1 :
+				return 'January';
+			case 2 :
+				return 'February';
+			case 3 :
+				return 'March';
+			case 4 :
+				return 'April';
+			case 5 :
+				return 'May';
+			case 6 :
+				return 'June';
+			case 7 :
+				return 'July';
+			case 8 :
+				return 'August';
+			case 9 :
+				return 'September';
+			case 10 :
+				return 'October';
+			case 11 :
+				return 'November';
+			case 12 :
+				return 'December';				
+		}
+		return '';
+	}	
+	
+	function getTasks() {
+		data.tasks = [];		
+		var task_gr = new GlideRecord("x_baes2_qi_portal_improvement_tasks");
+		task_gr.addEncodedQuery(data.task_filter);
+		task_gr.orderBy('due_date');
+		task_gr.orderBy('name');        
+		task_gr.query();
+		while (task_gr.next()) {
+			if (!task_gr.canRead())
+				continue;
+
+			var task = {};	
+			task.sys_id = task_gr.getValue('sys_id');
+			task.number = task_gr.getValue('number');
+			task.short_description = task_gr.getDisplayValue('short_description');			
+			task.description = task_gr.getDisplayValue('description');
+			task.work_notes = task_gr.getDisplayValue('work_notes');			
+			task.priority = task_gr.getDisplayValue('priority');
+			task.due_date = task_gr.getDisplayValue('due_date');
+			task.assigned_to = task_gr.getDisplayValue('assigned_to');
+			task.state = task_gr.getDisplayValue('state');            				
+			task.created_by = task_gr.getDisplayValue("sys_created_by");			
+			task.updated_on = task_gr.getDisplayValue("sys_updated_on");
+			task.updated_by = task_gr.getDisplayValue("sys_updated_by");			
+			
+			data.tasks.push(task);
+		}
+	}	
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-08-20 13:54:15</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>9abb588bdbdfb3007186d3ca4b96190e</sys_id>
+        <sys_mod_count>256</sys_mod_count>
+        <sys_name>Quality Improvement Timeline v2</sys_name>
+        <sys_package display_value="Quality Improvement Portal" source="x_baes2_qi_portal">7b4df9cadb8f7300610f7b47f49619b0</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Quality Improvement Portal">7b4df9cadb8f7300610f7b47f49619b0</sys_scope>
+        <sys_update_name>sp_widget_9abb588bdbdfb3007186d3ca4b96190e</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-09-06 12:55:52</sys_updated_on>
+        <template><![CDATA[<div class="panel-body" style="padding-top: 0px;">
+  <div>
+  	<p ng-if="data.type == 'theme'" ng-bind-html="data.theme_description"></p>
+  	<p ng-if="data.type == 'project'" ng-bind-html="data.project_description"></p>
+  	<p ng-if="data.type == 'activty_group'" ng-bind-html="data.activity_group_description"></p>
+  	<p ng-if="data.type == 'activity'" ng-bind-html="data.activity_description"></p>    
+  </div>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="javascript:void(0)" data-target="#details" aria-controls="details" role="tab" data-toggle="tab">Details</a></li>
+    <li role="presentation"><a href="javascript:void(0)" data-target="#history" aria-controls="history" role="tab" data-toggle="tab">Task History</a></li>
+  </ul>
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="details">
+      <table class="table table-sm">
+        <tbody>
+          <tr>
+          <tr ng-if="data.type != 'theme'">
+            <td style="width: 15%; vertical-align:middle;">${Theme}</td>
+            <td style="width: 35%; vertical-align:middle;"><div ng-bind-html="data.theme_name" tooltips tooltip-template="{{::data.theme_description}}"></div></td>
+             <td align="right" style="width: 50%;">
+          		<div ng-repeat="month in data.theme_months" class="month" ng-style="::{'background-color': month.background_color, 'border' : month.border}" tooltips tooltip-template="{{::month.msg}}"><span ng-style="::{'color': month.font_color}">{{month.target}}</span></div>
+      		</td>
+          </tr>
+          <tr ng-if="data.type != 'theme' && data.type != 'project'">
+            <td style="width: 15%; vertical-align:middle;">${Project}</td>
+            <td style="width: 35%; vertical-align:middle;"><div ng-bind-html="data.project_name" tooltips tooltip-template="{{::data.project_description}}"></div></td>
+             <td align="right" style="width: 50%;">
+          		<div ng-repeat="month in data.project_months" class="month" ng-style="::{'background-color': month.background_color, 'border' : month.border}" tooltips tooltip-template="{{::month.msg}}"><span ng-style="::{'color': month.font_color}">{{month.target}}</span></div>
+      		</td>            
+          </tr>
+          <tr ng-if="data.type != 'theme' && data.type != 'project' && data.type != 'activity_group'">
+            <td style="width: 15%; vertical-align:middle;">${Activity Group}</td>
+            <td style="width: 35%; vertical-align:middle;"><div ng-bind-html="data.activity_group_name" tooltips tooltip-template="{{::data.activity_group_description}}"></div></td>
+             <td align="right" style="width: 50%;">
+          		<div ng-repeat="month in data.activity_group_months" class="month" ng-style="::{'background-color': month.background_color, 'border' : month.border}" tooltips tooltip-template="{{::month.msg}}"><span ng-style="::{'color': month.font_color}">{{month.target}}</span></div>
+      		</td>            
+          </tr>          
+          <tr>
+            <td style="width: 15%;">${Latest Status}</td>
+            <td colspan=2 style="width: 85%;">
+              <span ng-if="data.previous_status" class="label" ng-style="::{'background-color': data.previous_status_background_color, 'color': data.previous_status_font_color}" tooltips tooltip-template="{{data.previous_status_msg}}">{{data.previous_status}}</span>
+              <span ng-if="data.previous_status"><i class="fa fa-lg fa-arrow-circle-right" aria-hidden="true"></i></span>
+              <span ng-if="data.current_status" class="label" ng-style="::{'background-color': data.current_status_background_color, 'color': data.current_status_font_color}" tooltips tooltip-template="{{data.current_status_msg}}">{{data.current_status}}</span>              
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 15%;">${Progress V Plan}</td>
+            <td colspan=2 style="width: 85%;">${Color bar indicators flow left to right, from oldest to most recent status:}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top: 10px;">
+        <div ng-repeat="month in data.months" class="month" ng-style="::{'background-color': month.background_color, 'border' : month.border}" tooltips tooltip-template="{{::month.msg}}"><span ng-style="::{'color': month.font_color}">{{month.target}}</span></div>        
+        <div ng-repeat="month in data.year1_months" class="month" ng-style="::{'background-color': month.background_color}" tooltips tooltip-template="{{::month.msg}}"><span ng-style="::{'color': month.font_color}">{{month.target}}</span></div>        
+        <div ng-repeat="month in data.year2_months" class="month" ng-style="::{'background-color': month.background_color}" tooltips tooltip-template="{{::month.msg}}"><span ng-style="::{'color': month.font_color}">{{month.target}}</span></div>                
+      </div>
+    </div>
+    
+    <div role="tabpanel" class="tab-pane" id="history">
+      
+      <div class="panel panel- b"> 
+       <div class="panel-heading form-inline" style="padding-bottom:0px;" aria-hidden="false">  
+        <button name="new" role="link" class="btn btn-primary btn-sm m-l-xs ng-scope" ng-click="newTaskRecord(data.activity)" ng-if="data.type == 'activity'" aria-label="Create new record" style="">New</button>
+		<!-- <button name="new" role="link" class="btn btn-primary btn-sm m-l-xs ng-scope" ng-click="newTaskRecord(data.activity)" ng-if="data.type == 'activity' && data.show_new && data.canCreate && !data.newButtonUnsupported || 1 == 1" aria-label="Create new record" style="">New</button> -->           
+        <div class="clearfix"></div> 
+       </div> 
+       <!-- body --> 
+       <div class="panel-body" style="padding-top:0px;">  
+        <table class="table table-striped table-responsive ng-scope" ng-if="data.tasks.length || 1 == 1" style=""> 
+         <thead> 
+          <tr> 
+           <th class="sr-only"></th> 
+          <th class="text-nowrap" tabindex="0">
+            <div class="th-title">Number</div>
+          </th>
+          <th class="text-nowrap" tabindex="0">
+            <div class="th-title">Name</div>
+          </th>
+          <th class="text-nowrap" tabindex="0">
+            <div class="th-title">Priority</div>
+          </th>
+          <th class="text-nowrap" tabindex="0">
+            <div class="th-title">State</div>
+          </th>
+          <th class="text-nowrap" tabindex="0">
+            <div class="th-title">Assigned To</div>
+          </th>
+          <th class="text-nowrap" tabindex="0">
+            <div class="th-title">Due Date</div>
+          </th>
+          <th class="text-nowrap" tabindex="0">
+            <div class="th-title">Updated</div>
+          </th>            
+          </tr> 
+         </thead> 
+         <tbody> 
+           <tr ng-repeat="task in data.tasks track by task.sys_id">            
+              <td class="sr-only" tabindex="0" role="link" ng-click="editTaskRecord(task)" aria-label="${Open record}"></td>
+              <td role="text" class="pointer sp-list-cell" ng-click="editTaskRecord(task)"><span tooltips tooltip-template="Description: {{task.description}} </br>Work Notes: {{task.work_notes}}">{{task.number}}</span></td>
+              <td role="text" class="pointer sp-list-cell" ng-click="editTaskRecord(task)"><span tooltips tooltip-template="Description: {{task.description}} </br>Work Notes: {{task.work_notes}}">{{task.short_description}}</span></td>
+              <td role="text" class="pointer sp-list-cell" ng-click="editTaskRecord(task)"><span tooltips tooltip-template="Description: {{task.description}} </br>Work Notes: {{task.work_notes}}">{{task.priority}}</span></td>
+              <td role="text" class="pointer sp-list-cell" ng-click="editTaskRecord(task)"><span tooltips tooltip-template="Description: {{task.description}} </br>Work Notes: {{task.work_notes}}">{{task.state}}</span></td>
+              <td role="text" class="pointer sp-list-cell" ng-click="editTaskRecord(task)"><span tooltips tooltip-template="Description: {{task.description}} </br>Work Notes: {{task.work_notes}}">{{task.assigned_to}}</span></td>
+              <td role="text" class="pointer sp-list-cell" ng-click="editTaskRecord(task)"><span tooltips tooltip-template="Description: {{task.description}} </br>Work Notes: {{task.work_notes}}">{{task.due_date}}</span></td>
+              <td role="text" class="pointer sp-list-cell" ng-click="editTaskRecord(task)"><span tooltips tooltip-template="Description: {{task.description}} </br>Work Notes: {{task.work_notes}}">{{task.updated_on}}</span></td>              
+            </tr> 
+         </tbody> 
+        </table>  
+       </div>  
+      </div>
+      
+		<!-- <button tabindex="0" name="newTask" ng-click="triggerAddTask()" class="btn btn-primary ng-binding ng-scope">Add</button> -->      
+      	<!-- Simple List Widget For Associated Tasks
+		<widget id="widget-simple-list" options='{"table": "x_baes2_qi_portal_improvement_tasks", "filter": data.task_filter, "display_field": "short_description", "secondary_fields": "number,description,priority,due_date,assigned_to,sys_updated_on", "order_by": "due_date,short_description", "order_direction": "asc", "title": "Outstanding Tasks", "hide_header": "false", "hide_footer": "false", "always_show": "true"}'></widget> -->
+      	<!-- Data Table Widget For Associated Tasks 
+		<widget id="widget-data-table" options='{"table": "x_baes2_qi_portal_improvement_tasks", "filter": data.task_filter, "display_field": "short_description", "fields": "number,description,priority,due_date,assigned_to,state,sys_updated_on", "o": "due_date,short_description", "d": "asc", "title": "Outstanding Tasks", "hide_header": "false", "hide_footer": "false", "show_new" : {"displayValue" : true, "value" : true}}'></widget> -->     
+      	<!-- Data Table From URL Widget For Associated Tasks -->
+		<!-- <sp-widget widget="associatedTasksWidget"></sp-widget> -->
+    </div>
+  </div>
+
+</div>
+
+]]></template>
+    </sp_widget>
+</record_update>

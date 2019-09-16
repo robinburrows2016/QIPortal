@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_widget_dependency">
+    <m2m_sp_widget_dependency action="INSERT_OR_UPDATE">
+        <sp_dependency display_value="RetinaIconsCSS">ed4d86b06700320080c6c3105685ef41</sp_dependency>
+        <sp_widget display_value="Quality Improvement - Active Themes">306df6c4dbb3b3407186d3ca4b961941</sp_widget>
+        <sys_class_name>m2m_sp_widget_dependency</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-09-05 14:30:11</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>346df6c4dbb3b3407186d3ca4b961943</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>RetinaIconsCSS.Copy of BI Portal - Active Campaigns</sys_name>
+        <sys_package display_value="Quality Improvement Portal" source="x_baes2_qi_portal">7b4df9cadb8f7300610f7b47f49619b0</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Quality Improvement Portal">7b4df9cadb8f7300610f7b47f49619b0</sys_scope>
+        <sys_update_name>m2m_sp_widget_dependency_346df6c4dbb3b3407186d3ca4b961943</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-09-05 14:30:11</sys_updated_on>
+    </m2m_sp_widget_dependency>
+</record_update>

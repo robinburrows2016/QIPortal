@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element extends="task" label="Improvement Tasks" max_length="40" name="x_baes2_qi_portal_improvement_tasks" sizeclass="4" type="collection">
+        <element label="Activity" max_length="32" name="activity" reference="x_baes2_qi_portal_activity" type="reference"/>
+    </element>
+</database>

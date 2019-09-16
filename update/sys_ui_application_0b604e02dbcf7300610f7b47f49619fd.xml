@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_application">
+    <sys_ui_application action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <hint/>
+        <name>Quality Improvement Portal</name>
+        <order/>
+        <roles>x_baes2_qi_portal.user</roles>
+        <sys_class_name>sys_ui_application</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-08-05 08:24:36</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_id>0b604e02dbcf7300610f7b47f49619fd</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Quality Improvement Portal</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Quality Improvement Portal" source="x_baes2_qi_portal">7b4df9cadb8f7300610f7b47f49619b0</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Quality Improvement Portal">7b4df9cadb8f7300610f7b47f49619b0</sys_scope>
+        <sys_update_name>sys_ui_application_0b604e02dbcf7300610f7b47f49619fd</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-08-05 08:24:36</sys_updated_on>
+    </sys_ui_application>
+</record_update>

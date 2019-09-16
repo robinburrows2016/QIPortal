@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($scope, $rootScope,$timeout, $uibModal, spUtil, spModal) {
+  /* widget controller */
+  var c = this;
+	c.show_recent = false;	
+	
+	//Initialize the filter for the record watcher
+	c.watchFilter = "active=true";
+	spUtil.recordWatch($scope, "x_baes2_qi_portal_theme", c.watchFilter, function(name, data) {
+		c.server.update();
+	});	
+	
+	c.KEYS = {
+						DOWN:40,
+						LEFT:37,
+						RIGHT:39,
+						TAB:9,
+						UP:38
+					 }
+	
+	if (c.data.recentItems.length > 0)
+		c.show_recent = true;
+
+	c.changePanel = function(panel_name) {
+		if (c.show_recent) {
+			if (panel_name == 'popular')
+				c.show_recent = false;
+		} else {
+			if (panel_name == 'recent')
+				c.show_recent = true;
+		}
+	};
+	
+	c.switchTab = function($event, tab) {
+		var key = null;
+		if (event.keyCode === c.KEYS.LEFT || event.keyCode === c.KEYS.UP)
+			key = c.KEYS.LEFT;
+		else if (event.keyCode === c.KEYS.RIGHT || event.keyCode === c.KEYS.DOWN)
+			key = c.KEYS.RIGHT;
+		else if (event.keyCode === c.KEYS.TAB) {
+			return;
+		}
+		if (key === null)
+			return;
+
+		c.show_recent = !c.show_recent;
+		if (c.show_recent)
+			$('a.recent').focus();
+		else
+			$('a.popular').focus();
+	}
+	
+	c.ideaModal = function(ev, sysId){
+		// Force reload of widget and hide 'X' close button		
+		c.ideaModalInstance = null;
+		
+		// Create Instance Of The Idea Record Producer Widget - widget-sc-cat-item-v2-bae
+		spUtil.get('widget-sc-cat-item-v3-bae', {sys_id: '480589a2dbba2780561fb29a689619da', sysparm_campaign: sysId}).then(function(response){	
+			c.ideaModalInstance = response;
+			c.ideaModalInstance.options = {show_add_cart_button: 'false', show_add_to_wishlist_button: 'true', display_cart_on_right: 'false', show_field_validation_messages: 'true'};
+			c.ideaModalInstance.data.default_variables = '[{"name":"campaign", "value":"' + sysId + '" , "readOnly":"true"}, {"name":"IGNORE", "value":"IGNORE", "readOnly":"false"}]';
+		});
+		// Open the Idea Modal
+		c.modalInstance = $uibModal.open({
+			templateUrl: 'ideaModalTemplate',
+			size : 'lg',
+			scope: $scope
+		});
+		c.server.update();
+	};
+	
+	c.observationModal = function(ev, sysId){
+		// Force reload of widget and hide 'X' close button		
+		c.ideaModalInstance = null;
+		
+		// Create Instance Of The Idea Record Producer Widget - widget-sc-cat-item-v2-bae
+		spUtil.get('widget-sc-cat-item-v3-bae', {sys_id: 'b190ea4cdb503f00610f7b47f4961972', sysparm_campaign: sysId}).then(function(response){	
+			c.ideaModalInstance = response;
+			c.ideaModalInstance.options = {show_add_cart_button: 'false', show_add_to_wishlist_button: 'true', display_cart_on_right: 'false', show_field_validation_messages: 'true'};
+			c.ideaModalInstance.data.default_variables = '[{"name":"campaign", "value":"' + sysId + '" , "readOnly":"true"}, {"name":"IGNORE", "value":"IGNORE", "readOnly":"false"}]';
+		});
+		// Open the Idea Modal
+		c.modalInstance = $uibModal.open({
+			templateUrl: 'ideaModalTemplate',
+			size : 'lg',
+			scope: $scope
+		});
+		c.server.update();
+	};	
+
+	c.closeModal = function() {
+		c.modalInstance.close();
+	};	
+    	
+	function _preventDefault(evt){
+		if(evt){
+			evt.stopPropagation();
+			evt.preventDefault();
+		}
+	}	
+	
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.sc-tab-a {&#13;
+   color: $primary;&#13;
+   border: 0;&#13;
+   border-bottom: 3px solid $primary;&#13;
+   background-color: transparent;&#13;
+}&#13;
+&#13;
+.nav &gt; li.item {&#13;
+  text-align: center;&#13;
+}&#13;
+&#13;
+.recent-widget {&#13;
+  .panel-heading {&#13;
+			padding-bottom : 0px;&#13;
+	}&#13;
+  &#13;
+  .row {&#13;
+    margin-left: 0;&#13;
+    margin-right:0;&#13;
+    padding-top: 15px;&#13;
+    padding-left: 10px;&#13;
+    padding-right: 10px;&#13;
+  }&#13;
+  .item-card {&#13;
+    margin-bottom: 15px;&#13;
+  }&#13;
+}&#13;
+&#13;
+.overflow-100 {&#13;
+    color: $primary; &#13;
+    height: 300px;&#13;
+}&#13;
+&#13;
+#qi_rag_legends {&#13;
+    color: $primary; &#13;
+    height: 300px;&#13;
+}&#13;
+&#13;
+.m-b {  &#13;
+    margin-top: 5px !important;  &#13;
+    margin-bottom: 10px !important;&#13;
+}&#13;
+&#13;
+.icon-container {&#13;
+  position: relative;&#13;
+}&#13;
+&#13;
+.icon-overlay {&#13;
+  position: absolute;&#13;
+  bottom: 0;&#13;
+  left: 0;&#13;
+  right: 0;&#13;
+  overflow: hidden;&#13;
+  width: 100%;&#13;
+  height: 0;&#13;
+  transition: .5s ease;&#13;
+  opacity: 1.0;&#13;
+  filter: alpha(opacity=100); /* For IE8 and earlier */&#13;
+  visibility:hidden;&#13;
+}&#13;
+&#13;
+.icon-container:hover .icon-overlay {&#13;
+  height: 100%;&#13;
+  border-radius: 4px 4px 0px 0px;&#13;
+  /*background-color: $primary!important;  */&#13;
+  visibility:visible;&#13;
+}&#13;
+&#13;
+.icon-text-muted {&#13;
+  color: #ffffff;&#13;
+  font-size: 20px;&#13;
+  position: absolute;&#13;
+  top: 50%;&#13;
+  left: 50%;&#13;
+  -webkit-transform: translate(-50%, -50%);&#13;
+  -ms-transform: translate(-50%, -50%);&#13;
+  transform: translate(-50%, -50%);&#13;
+  text-align: center;&#13;
+  width: 100%;&#13;
+  padding:10px;&#13;
+}&#13;
+&#13;
+.panel-body {&#13;
+    padding: 0px;&#13;
+}&#13;
+&#13;
+.panel-footer:hover {&#13;
+  background-color:#ddd;&#13;
+}&#13;
+&#13;
+.month {&#13;
+  float: left;&#13;
+  margin: 0px 1px 0px 1px; &#13;
+  width: 20.75px; &#13;
+  max-width: 20.75px; &#13;
+  min-width: 20.75px; &#13;
+  height: 30px; &#13;
+  border-radius: 3px;&#13;
+  text-align: center;&#13;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description>Display a card list of the active Themes</description>
+        <docs/>
+        <field_list>title,color</field_list>
+        <has_preview>false</has_preview>
+        <id>quality_improvement_themes</id>
+        <internal>false</internal>
+        <link/>
+        <name>Quality Improvement - Active Themes</name>
+        <option_schema>[{"hint":"Number of item cards in the widget","name":"limit","section":"Presentation","default_value":"8","label":"Number of Items","type":"integer"},{"hint":"Panel column width in the widget","name":"panelWidth","section":"Presentation","default_value":"4","label":" Panel column width","type":"integer"},{"hint":"Home page Challenges?","name":"homePage","default_value":"false","label":"Home Page Specific Challenges","type":"boolean"},{"hint":"Show my recent items by view or request","name":"recent_by","section":"Behavior","default_value":"view","label":"My Recent Items By","type":"choice","choices":[{"label":"View","value":"view"},{"label":"Request","value":"request"}]}]</option_schema>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+	
+	data.legendsWidget = $sp.getWidget('quality_improvement_legends');
+	
+	var limit = options.limit || 21;
+	var homePage = options.homePage || 'false';	
+	var recent_by = options.recent_by || 'view';
+	var gdt = new GlideDateTime();
+	var curr_year = gdt.getYearLocalTime();
+	var curr_month = gdt.getMonthLocalTime();	
+
+	// Active Campaigns
+	var currentTime = new GlideDateTime();
+	data.recentItems = [];
+	var q = new GlideRecordSecure('x_baes2_qi_portal_theme'); // does ACL checking for us
+	q.addActiveQuery();	
+	q.orderBy('order');
+	q.setLimit(limit);
+	q.query();
+	while (q.next()) {
+		if (!q.canRead())
+			continue;
+
+		var item = {};
+		item.sys_id = q.getValue('sys_id');
+		item.number = q.getDisplayValue("number");		
+		item.title = q.getDisplayValue("title");		
+		item.description = q.getDisplayValue("description");
+		item.glyph = q.getValue("glyph");
+		item.picture = q.getDisplayValue("picture");		
+		item.state = q.getValue("state");		
+		item.stateDisplay = q.getDisplayValue("state");	
+		item.background_color = q.getValue('background_color');
+		item.font_color = q.getValue('font_color');		
+		item.revisionString = 'Owner ' + q.getDisplayValue('owner');
+        item.createdUTC = q.getValue('sys_created_on');
+        item.updatedUTC = q.getValue('sys_updated_on'); 		
+		item.year = curr_year;
+		item.month = curr_month;		
+		item.months = [];
+		item.months = getLevelStats(item.sys_id, null, null, null, 'theme', item.year);		
+		item.month_name = getMonthName(curr_month);
+		item.statsCount = getStatsCount(item.sys_id, item.year, item.month);
+		item.tasksCount = getTasksCount(item.sys_id, item.year, item.month);
+		data.recentItems.push(item);
+	}
+	
+	data.popularItems = getPopularItems();
+	
+	function getPopularItems () {
+		var catalog = $sp.getValue('sc_catalog');
+		var limit = options.limit || 8;
+		var items = [];
+		var catItems = [];
+		return items;
+	}
+	
+	function getStatsCount(theme, year, month) {
+		
+		// Retrieve Total Number Of Enties For Theme
+		var theme_count = new GlideRecord('x_baes2_qi_portal_theme'); // does ACL checking for us
+		theme_count.addQuery('sys_id',theme);		
+		theme_count.addActiveQuery();		
+		theme_count.query();
+		var theme_reccount = theme_count.getRowCount();
+		
+		// Retrieve Total Number Of Enties For Project
+		var project_count = new GlideRecord('x_baes2_qi_portal_project'); // does ACL checking for us
+		project_count.addQuery('theme',theme);		
+		project_count.addActiveQuery();		
+		project_count.query();
+		var project_reccount = project_count.getRowCount();
+		
+		// Retrieve Total Number Of Entries For Activity Group
+		var activity_group_count = new GlideRecord('x_baes2_qi_portal_activity_group'); // does ACL checking for us
+		activity_group_count.addQuery('project.theme',theme);		
+		activity_group_count.addActiveQuery();		
+		activity_group_count.query();
+		var activity_group_reccount = activity_group_count.getRowCount();		
+		
+		// Retrieve Total Number Of Entries For Activity
+		var activity_count = new GlideRecord('x_baes2_qi_portal_activity'); // does ACL checking for us
+		activity_count.addQuery('activity_group.project.theme',theme);		
+		activity_count.addActiveQuery();		
+		activity_count.query();
+		var activity_reccount = activity_count.getRowCount();		
+		
+		// Retrieve Total Number Of Statistics For Theme / Year / Current Month
+		var month_no = 'rag_';
+		if (month > 9) {
+			month_no += month;				
+		} else {
+			month_no += '0' + month;				
+		}
+		var stats_count = new GlideRecord('x_baes2_qi_portal_statistics'); // does ACL checking for us
+		var qc2 = stats_count.addQuery('theme', theme);
+		qc2.addOrCondition('project.theme',theme);
+		qc2.addOrCondition('activity_group.project.theme',theme);
+		qc2.addOrCondition('activity.activity_group.project.theme',theme);
+		stats_count.addQuery('year', year);
+		stats_count.addQuery(month_no, '=', '').addOrCondition(month_no, '=', '9eca839cdbbfb3407186d3ca4b96194c');		
+		stats_count.addActiveQuery();		
+		stats_count.query();
+		var stats_reccount = stats_count.getRowCount();
+		
+		// Return Difference - Outstanding Statistics For Month
+		//return (theme_reccount + project_reccount + activity_group_reccount + activity_reccount) - stats_reccount;		
+		return stats_reccount;
+	}	
+	
+	function getTasksCount(theme, year, month) {
+		var count = new GlideRecord('x_baes2_qi_portal_improvement_tasks'); // does ACL checking for us
+		count.addQuery('activity.activity_group.project.theme',theme);
+		count.addQuery('state', 'IN', '-5, 1, 2, 8');	
+		count.addActiveQuery();		
+		count.query();
+		return count.getRowCount();
+	}	
+	
+	function getLevelStats(theme, project, activity_group, activity, type, year) {
+		//console.log('TIMELINE Theme= ' + theme + '  Project= ' + project + '  Activity Group= ' + activity_group + '  Activity= ' + activity + '  Type= ' + type + '  Year= ' + yearnow + '  Years Forward= ' + yearsforward);		
+		var level_months = [];
+		var gdt = new GlideDateTime();
+		var curr_year = gdt.getYearLocalTime();		
+		var curr_month = gdt.getMonthLocalTime();		
+		var statsgr = new GlideRecord('x_baes2_qi_portal_statistics');
+		switch(type) {
+			case 'theme' :
+				statsgr.addQuery('theme', theme);
+				statsgr.addNullQuery('project');
+				statsgr.addNullQuery('activity_group');
+				statsgr.addNullQuery('activity');								
+				break;
+			case 'project' :
+				statsgr.addNullQuery('theme');
+				statsgr.addQuery('project', project);
+				statsgr.addNullQuery('activity_group');
+				statsgr.addNullQuery('activity');								
+				break;
+			case 'activity_group' :
+				statsgr.addNullQuery('theme');
+				statsgr.addNullQuery('project');
+				statsgr.addQuery('activity_group', activity_group);
+				statsgr.addNullQuery('activity');								
+				break;
+			case 'activity' :
+				statsgr.addNullQuery('theme');
+				statsgr.addNullQuery('project');
+				statsgr.addNullQuery('activity_group');
+				statsgr.addQuery('activity', activity);                				
+				break;                
+		}		
+        statsgr.addQuery('type', type);
+        statsgr.addQuery('year', year);				
+		statsgr.query();
+		if (statsgr.next()) {		
+			for (var i = 1; i <= 12; i++) {
+				var month_no = 'rag_';
+				var target_no = 'target_';			
+				if (i > 9) {
+					month_no += i;
+					target_no += i;				
+				} else {
+					month_no += '0' + i;
+					target_no += '0' + i;				
+				}
+				var month_status = statsgr.getDisplayValue(month_no);
+				var background = month_no + '.background_color';
+				var font = month_no + '.font_color';				
+				var month_status_background_color = statsgr.getDisplayValue(background);
+				// Default If No Status
+				if (!month_status_background_color) {
+					month_status_background_color = '#e6e8ea';
+				}
+				var month_status_font_color = statsgr.getDisplayValue(font);				
+				var font = month_no + '.font_color';
+				var month_status_font_color = statsgr.getDisplayValue(font);
+				var month_target = statsgr.getDisplayValue(target_no);			
+
+				var month = {};
+				var month_name = getMonthName(i);
+				var month_summary = statsgr.getDisplayValue('summary');			
+				month.msg = month_name + ' ' + statsgr.year + ' - ' + month_status;
+				if (month_summary) {
+					month.msg += '</br></br>Summary: </br>' + month_summary;
+				}
+				if (year == curr_year && i == curr_month) {
+					month.border = '2px solid black';
+				} else {
+					month.border = '2px solid transparent';					
+				}				
+				month.background_color = month_status_background_color;
+				month.font_color = month_status_font_color;				
+				month.target = month_target;			
+				level_months.push(month);					
+			}		
+		}		
+		return level_months;
+	}	
+	
+	function getMonthName(month) {
+		switch(month) {
+			case 1 :
+				return 'January';
+			case 2 :
+				return 'February';
+			case 3 :
+				return 'March';
+			case 4 :
+				return 'April';
+			case 5 :
+				return 'May';
+			case 6 :
+				return 'June';
+			case 7 :
+				return 'July';
+			case 8 :
+				return 'August';
+			case 9 :
+				return 'September';
+			case 10 :
+				return 'October';
+			case 11 :
+				return 'November';
+			case 12 :
+				return 'December';				
+		}
+		return '';
+	}	
+	
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-09-05 14:30:11</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>306df6c4dbb3b3407186d3ca4b961941</sys_id>
+        <sys_mod_count>97</sys_mod_count>
+        <sys_name>Quality Improvement - Active Themes</sys_name>
+        <sys_package display_value="Quality Improvement Portal" source="x_baes2_qi_portal">7b4df9cadb8f7300610f7b47f49619b0</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Quality Improvement Portal">7b4df9cadb8f7300610f7b47f49619b0</sys_scope>
+        <sys_update_name>sp_widget_306df6c4dbb3b3407186d3ca4b961941</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-09-06 13:20:33</sys_updated_on>
+        <template><![CDATA[<div class="recent-widget">
+  <div class="panel panel-default">
+ 	<div class="panel-heading pad-bottom hidden">
+    	<ul class="nav nav-tabs" style="border-bottom : 0px" role="tablist">
+      	<li class="item" ng-if="data.recentItems.length > 0" role="tab" tabindex="-1" ng-click="c.changePanel('recent')" ng-keydown="c.switchTab($event, 'recent')">
+        	<a ng-class="{'sc-tab-a' : c.show_recent}" href="javascript:void(0)" class="recent">
+          	<span> ${My Recent Items} </span>
+          </a>
+        </li>  
+        <li class="item" role="tab" tabindex="-1" ng-keydown="c.switchTab($event, 'popular')" ng-click="c.changePanel('popular')" >
+        	<a ng-class="{'sc-tab-a' : !c.show_recent}" href="javascript:void(0)" class="popular">
+          	<span > ${Popular Items} </span>
+          </a>
+        </li>  
+    	</ul>
+  </div>
+    
+ <div class="panels-container" ng-if="c.show_recent">
+   <div class="row">
+     <div class="col-sm-6 col-md-{{::c.options.panelWidth}}" ng-repeat="item in data.recentItems track by item.sys_id">
+       
+       <div class="panel panel-default item-card">
+
+         
+             <div class="icon-container">
+               <div class="panel-body block">
+                 <div class="overflow-100 text-center">
+                   <img ng-src="{{::item.picture}}" ng-if="::item.picture" class="m-r-sm m-b-sm" alt="{{::item.title}}" role="presentation" />             
+                   <h2 class="h4 m-t-none m-b-xs text-overflow-ellipsis" title="{{::item.title}}">{{::item.title}}</h2>
+                   <p>
+                     <small>
+                       <span ng-if="item.revisionString" class="author pad-right text-nowrap">
+                        <i class="fa fa-user pad-right" />
+                         {{item.revisionString}}
+                       </span>
+                      <span class="published pad-right text-nowrap">
+                        <span ng-if="item.revisionString" class="pad-right">&#8226;</span> <i class="fa fa-calendar pad-right" />
+                        Updated <sn-time-ago timestamp="item.updatedUTC"/>
+                      </span>        
+                     </small>
+                   </p>                       
+                   <div style="text-align:center; clear:both;">
+                     <div style="text-align:center; display: inline-block">
+                       <div class="month">J</div>
+                       <div class="month">F</div>
+                       <div class="month">M</div>
+                       <div class="month">A</div>
+                       <div class="month">M</div>
+                       <div class="month">J</div>
+                       <div class="month">J</div>
+                       <div class="month">A</div>
+                       <div class="month">S</div>
+                       <div class="month">O</div>
+                       <div class="month">N</div>
+                       <div class="month">D</div>
+                     </div>
+                   </div>
+                   <div style="text-align:center; clear:both;">
+                     <div ng-repeat="month in item.months" class="month" ng-style="::{'background-color': month.background_color, 'border' : month.border}" tooltips tooltip-template="{{::month.msg}}"><span ng-style="::{'color': month.font_color}">{{month.target}}</span></div>
+                 	</div>
+                   <p>
+                     <small>
+                       <span ng-if="item.month_name" class="author pad-right text-nowrap">Outstanding for &nbsp; 
+                        <i class="fa fa-calendar pad-right" />
+                         {{item.month_name}}
+                       </span>                       
+                      <span ng-if="item.statsCount == 1" class="views pad-right text-nowrap">
+                         <i class="fa fa-signal" />
+                         ${{{::item.statsCount}} Stat}
+                       </span>
+                       <span ng-if="item.statsCount > 1 || item.statsCount == 0" class="views pad-right text-nowrap">
+                         <i class="fa fa-signal" />
+                         ${{{::item.statsCount}} Stats}
+                       </span>                       
+                       <span ng-if="item.tasksCount == 1" class="views pad-right text-nowrap">
+						 <span class="pad-right hidden">&#8226;</span> <i class="fa fa-signal" />                         
+                         ${{{::item.tasksCount}} Task}
+                       </span>
+                       <span ng-if="item.tasksCount > 1 || item.tasksCount == 0" class="views pad-right text-nowrap">
+						 <span class="pad-right hidden">&#8226;</span> <i class="fa fa-signal" />
+                         ${{{::item.tasksCount}} Tasks}
+                       </span>
+                       </small>
+                   </p>                   
+                   <div class="text-muted item-short-desc hidden">{{::item.description}}</div>
+                 </div>                  
+               </div>
+                <div class="icon-overlay" ng-style="::{'background-color': item.background_color}" title="Click to view {{::item.title}} breakdown">
+                  <a href="?id=qi_portal&spa=1&t=&order=theme&theme={{item.sys_id}}&year={{item.year}}" class="text-muted" title="Click to view {{::item.title}} breakdown" tabindex="-1">
+                   <div class="icon-text-muted item-short-desc" ng-style="::{'color': item.font_color}">{{::item.description}}</div>
+                  </a>
+                </div>               
+        	 </div>                     
+       </div>       
+     </div>
+     
+     <div class="col-sm-6 col-md-{{::c.options.panelWidth}}">
+       <sp-widget widget="data.legendsWidget" />
+     <div>
+     
+   </div>
+ </div>
+    
+ <div class="panels-container" ng-if="!c.show_recent">
+   <div class="row">
+     <div class="col-sm-6 col-md-4" ng-repeat="item in data.popularItems | orderBy: 'order' track by item.sys_id">
+       <div class="panel panel-default item-card">
+         <a href="?id={{::item.page}}&sys_id={{::item.sys_id}}" class="panel-body block">
+           <div class="overflow-100">
+             <h2 class="h4 m-t-none m-b-xs text-overflow-ellipsis" title="{{::item.name}}">{{::item.name}}</h2>
+             <img ng-src="{{::item.picture}}" ng-if="::item.picture" class="m-r-sm m-b-sm item-image pull-left" alt="{{::item.name}}" role="presentation" />
+             <div class="text-muted item-short-desc">{{::item.short_description}}</div>
+           </div>
+         </a>
+         <div class="panel-footer">
+           <a href="?id={{::item.page}}&sys_id={{item.sys_id}}" class="text-muted" tabindex="-1">${View Details}</a> 
+           <span ng-if="data.showPrices && item.hasPrice" class="pull-right item-price font-bold">{{::item.price}}</span> &nbsp;
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+   
+    
+</div>]]></template>
+    </sp_widget>
+</record_update>

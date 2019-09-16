@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_page">
+    <sp_page action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <css>body .padding-top {&#13;
+  padding-top: 0px;&#13;
+}&#13;
+&#13;
+.panel-default {&#13;
+    margin-top: 20px;&#13;
+}&#13;
+&#13;
+#portalSearch.input-lg {&#13;
+  padding-top:0px!important;&#13;
+  padding-bottom:0px!important;&#13;
+  height: 34px;&#13;
+  font-size: 14px;  &#13;
+}&#13;
+&#13;
+.breadcrumbs-container {&#13;
+  background-color: transparent;&#13;
+  border-bottom: none;&#13;
+}&#13;
+&#13;
+.campaigns-message {&#13;
+  margin-top:15px;&#13;
+}&#13;
+&#13;
+.campaigns-message blockquote {&#13;
+  border-left:0px;&#13;
+}</css>
+        <draft>false</draft>
+        <dynamic_title_structure/>
+        <id>qi_themes_list</id>
+        <internal>false</internal>
+        <public>false</public>
+        <roles/>
+        <short_description>Quality Improvement Themes List</short_description>
+        <sys_class_name>sp_page</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-09-05 14:31:17</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>68adf6c4dbb3b3407186d3ca4b961947</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>qi_themes_list</sys_name>
+        <sys_package display_value="Quality Improvement Portal" source="x_baes2_qi_portal">7b4df9cadb8f7300610f7b47f49619b0</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Quality Improvement Portal">7b4df9cadb8f7300610f7b47f49619b0</sys_scope>
+        <sys_update_name>sp_page_68adf6c4dbb3b3407186d3ca4b961947</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-09-05 14:37:58</sys_updated_on>
+        <title>QI Themes</title>
+    </sp_page>
+</record_update>

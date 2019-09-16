@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Theme" max_length="40" name="x_baes2_qi_portal_theme" type="collection">
+        <element label="Active" mandatory="true" max_length="40" name="active" type="boolean"/>
+        <element label="Background Color" mandatory="true" max_length="7" name="background_color" type="color"/>
+        <element label="Business Unit" mandatory="true" max_length="32" name="business_unit" reference="business_unit" type="reference"/>
+        <element label="Description" max_length="1000" name="description" type="string_full_utf8"/>
+        <element display="true" label="Display Title" max_length="1000" name="display_title" read_only="true" type="string_full_utf8"/>
+        <element label="Font Color" mandatory="true" max_length="7" name="font_color" type="color"/>
+        <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element label="Order" max_length="40" name="order" type="integer"/>
+        <element label="Owner" mandatory="true" max_length="32" name="owner" reference="sys_user" reference_qual="active=true^EQ" reference_qual_condition="active=true^EQ" type="reference"/>
+        <element label="picture" max_length="40" name="picture" type="user_image"/>
+        <element label="Sponsor" mandatory="true" max_length="32" name="sponsor" reference="sys_user" reference_qual="active=true^EQ" reference_qual_condition="active=true^EQ" type="reference"/>
+        <element label="Title" mandatory="true" max_length="100" name="title" type="string_full_utf8"/>
+        <index name="index">
+            <element name="owner"/>
+        </index>
+        <index name="index2">
+            <element name="sponsor"/>
+        </index>
+        <index name="index3">
+            <element name="business_unit"/>
+        </index>
+    </element>
+</database>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description>Records Are Generated Automatically From The Search Source, Therefore Ensure That Users Cannot Modify Unique Keys</description>
+        <field>active</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>Load / Protect Activity For New Records</name>
+        <order/>
+        <script><![CDATA[function onLoad() {
+	
+	// Load / Protect Activity For New Records
+	var activity_id = getParmVal('activity');
+	if (activity_id) {
+		g_form.setValue('activity', activity_id);
+		g_form.setReadonly("activity", true);		
+	}
+	
+	function getParmVal(name) {  
+		name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");  
+		var regexS = "[\\?&]" + name + "=([^&#]*)";  
+		var regex = new RegExp(regexS);  
+		var results = regex.exec(top.location);  
+		if (results == null) {  
+			return "";  
+		} else {  
+			return unescape(results[1]);  
+		}  
+	}	
+	
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-08-29 19:27:54</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_id>dd6e7bf5dbebfb007186d3ca4b961918</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>Load / Protect Activity For New Records</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Quality Improvement Portal" source="x_baes2_qi_portal">7b4df9cadb8f7300610f7b47f49619b0</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Quality Improvement Portal">7b4df9cadb8f7300610f7b47f49619b0</sys_scope>
+        <sys_update_name>sys_script_client_dd6e7bf5dbebfb007186d3ca4b961918</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-08-29 19:37:04</sys_updated_on>
+        <table>x_baes2_qi_portal_improvement_tasks</table>
+        <type>onLoad</type>
+        <ui_type>1</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>

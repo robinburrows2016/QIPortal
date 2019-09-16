@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl_role">
+    <sys_security_acl_role action="INSERT_OR_UPDATE">
+        <sys_class_name>sys_security_acl_role</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-08-05 08:24:36</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>0f604642dbcf7300610f7b47f4961993</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_baes2_qi_portal_rag_status.x_baes2_qi_portal.user</sys_name>
+        <sys_package display_value="Quality Improvement Portal" source="x_baes2_qi_portal">7b4df9cadb8f7300610f7b47f49619b0</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Quality Improvement Portal">7b4df9cadb8f7300610f7b47f49619b0</sys_scope>
+        <sys_security_acl display_value="x_baes2_qi_portal_rag_status">8b604642dbcf7300610f7b47f4961990</sys_security_acl>
+        <sys_update_name>sys_security_acl_role_0f604642dbcf7300610f7b47f4961993</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-08-05 08:24:36</sys_updated_on>
+        <sys_user_role display_value="x_baes2_qi_portal.user" name="x_baes2_qi_portal.user">845d794edb8f7300610f7b47f4961922</sys_user_role>
+        <transaction_id/>
+    </sys_security_acl_role>
+</record_update>

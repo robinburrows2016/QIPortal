@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_baes2_qi_portal.QualityImprovementColorHelper</api_name>
+        <client_callable>true</client_callable>
+        <description>Functions to assist with work on g_forms.- works with changing the Style background</description>
+        <name>QualityImprovementColorHelper</name>
+        <script><![CDATA[var QualityImprovementColorHelper = Class.create();
+QualityImprovementColorHelper.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+	
+	setRAGColor: function() {
+		var value = this.getParameter("sysparm_value");
+		var tableName = this.getParameter("sysparm_table_name");
+		var fieldName = this.getParameter("sysparm_field_name");
+		
+		return this.setRAGStyle(value,tableName,fieldName);
+		
+	},
+	
+	setRAGStyle: function(value,tableName,fieldName){
+		var style = "";
+		// Choose the color based on incoming value
+		var uiStylesGRecord = new GlideRecord('x_baes2_qi_portal_rag_status');		
+		if(uiStylesGRecord.get(value)) {
+			style = "background-color:" + uiStylesGRecord.background_color + "; color:" + uiStylesGRecord.font_color + ";";	
+		} else {
+			style = "background-color: #ffffff;";
+		}
+		
+		return style;
+	},	
+	
+	setActivityColor: function() {
+		var value = this.getParameter("sysparm_value");
+		var tableName = this.getParameter("sysparm_table_name");
+		var fieldName = this.getParameter("sysparm_field_name");
+		
+		return this.setActivityStyle(value,tableName,fieldName);
+		
+	},
+	
+	setActivityStyle: function(value,tableName,fieldName){
+		var style = "";
+		// Choose the color based on incoming value
+		var uiStylesGRecord = new GlideRecord('x_baes2_qi_portal_activity');		
+		if(uiStylesGRecord.get(value)) {
+			style = "background-color:" + uiStylesGRecord.activity_group.project.theme.background_color + "; color:" + uiStylesGRecord.activity_group.project.theme.font_color + ";";	
+		} else {
+			style = "background-color: #ffffff;";
+		}
+		
+		return style;
+	},
+	
+	setActivityGroupColor: function() {
+		var value = this.getParameter("sysparm_value");
+		var tableName = this.getParameter("sysparm_table_name");
+		var fieldName = this.getParameter("sysparm_field_name");
+		
+		return this.setActivityGroupStyle(value,tableName,fieldName);
+		
+	},
+	
+	setActivityGroupStyle: function(value,tableName,fieldName){
+		var style = "";
+		// Choose the color based on incoming value
+		var uiStylesGRecord = new GlideRecord('x_baes2_qi_portal_activity_group');		
+		if(uiStylesGRecord.get(value)) {
+			style = "background-color:" + uiStylesGRecord.project.theme.background_color + "; color:" + uiStylesGRecord.project.theme.font_color + ";";	
+		} else {
+			style = "background-color: #ffffff;";
+		}
+		
+		return style;
+	},
+	
+	setProjectColor: function() {
+		var value = this.getParameter("sysparm_value");
+		var tableName = this.getParameter("sysparm_table_name");
+		var fieldName = this.getParameter("sysparm_field_name");
+		
+		return this.setProjectStyle(value,tableName,fieldName);
+		
+	},
+	
+	setProjectStyle: function(value,tableName,fieldName){
+		var style = "";
+		// Choose the color based on incoming value
+		var uiStylesGRecord = new GlideRecord('x_baes2_qi_portal_project');		
+		if(uiStylesGRecord.get(value)) {
+			style = "background-color:" + uiStylesGRecord.theme.background_color + "; color:" + uiStylesGRecord.theme.font_color + ";";	
+		} else {
+			style = "background-color: #ffffff;";
+		}
+		
+		return style;
+	},
+	
+	setThemeColor: function() {
+		var value = this.getParameter("sysparm_value");
+		var tableName = this.getParameter("sysparm_table_name");
+		var fieldName = this.getParameter("sysparm_field_name");
+		
+		return this.setThemeStyle(value,tableName,fieldName);
+		
+	},
+	
+	setThemeStyle: function(value,tableName,fieldName){
+		var style = "";
+		// Choose the color based on incoming value
+		var uiStylesGRecord = new GlideRecord('x_baes2_qi_portal_theme');		
+		if(uiStylesGRecord.get(value)) {
+			style = "background-color:" + uiStylesGRecord.background_color + "; color:" + uiStylesGRecord.font_color + ";";	
+		} else {
+			style = "background-color: #ffffff;";
+		}
+		
+		return style;
+	},
+		
+    type: 'QualityImprovementColorHelper'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-08-13 09:49:48</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>a630e7a4db577b00370c9785ca96190d</sys_id>
+        <sys_mod_count>12</sys_mod_count>
+        <sys_name>QualityImprovementColorHelper</sys_name>
+        <sys_package display_value="Quality Improvement Portal" source="x_baes2_qi_portal">7b4df9cadb8f7300610f7b47f49619b0</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Quality Improvement Portal">7b4df9cadb8f7300610f7b47f49619b0</sys_scope>
+        <sys_update_name>sys_script_include_a630e7a4db577b00370c9785ca96190d</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-08-13 14:00:53</sys_updated_on>
+    </sys_script_include>
+</record_update>

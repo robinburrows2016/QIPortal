@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="" label="Improvement Tasks" language="en" table="x_baes2_qi_portal_improvement_tasks">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element/>
+            <help/>
+            <hint/>
+            <label>Improvement Tasks</label>
+            <language>en</language>
+            <name>x_baes2_qi_portal_improvement_tasks</name>
+            <plural>Improvement Tasks</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+            <sys_created_on>2019-08-13 09:25:13</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_id>8d0bd3a0db577b00370c9785ca9619e2</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Improvement Tasks</sys_name>
+            <sys_package display_value="Quality Improvement Portal" source="x_baes2_qi_portal">7b4df9cadb8f7300610f7b47f49619b0</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="Quality Improvement Portal">7b4df9cadb8f7300610f7b47f49619b0</sys_scope>
+            <sys_update_name>sys_documentation_x_baes2_qi_portal_improvement_tasks__en</sys_update_name>
+            <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+            <sys_updated_on>2019-08-13 09:25:13</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

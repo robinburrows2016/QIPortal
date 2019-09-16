@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="type" label="Type" language="en" table="x_baes2_qi_portal_statistics">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>type</element>
+            <help/>
+            <hint/>
+            <label>Type</label>
+            <language>en</language>
+            <name>x_baes2_qi_portal_statistics</name>
+            <plural>Types</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+            <sys_created_on>2019-08-21 09:56:20</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_id>26dea457db173340610f7b47f49619e8</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Type</sys_name>
+            <sys_package display_value="Quality Improvement Portal" source="x_baes2_qi_portal">7b4df9cadb8f7300610f7b47f49619b0</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="Quality Improvement Portal">7b4df9cadb8f7300610f7b47f49619b0</sys_scope>
+            <sys_update_name>sys_documentation_x_baes2_qi_portal_statistics_type_en</sys_update_name>
+            <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+            <sys_updated_on>2019-08-21 09:56:20</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

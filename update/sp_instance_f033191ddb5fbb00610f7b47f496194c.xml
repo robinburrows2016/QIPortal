@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>3</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">7433191ddb5fbb00610f7b47f4961943</sp_column>
+        <sp_widget display_value="Search Field Dependent Facet - BAE">86c39244db33b3407186d3ca4b9619be</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-08-15 07:27:17</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>f033191ddb5fbb00610f7b47f496194c</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>Activities</sys_name>
+        <sys_package display_value="Quality Improvement Portal" source="x_baes2_qi_portal">7b4df9cadb8f7300610f7b47f49619b0</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Quality Improvement Portal">7b4df9cadb8f7300610f7b47f49619b0</sys_scope>
+        <sys_update_name>sp_instance_f033191ddb5fbb00610f7b47f496194c</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-09-05 11:30:07</sys_updated_on>
+        <title>Activities</title>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"table": {
+		"value": "x_baes2_qi_portal_activity",
+		"displayValue": "x_baes2_qi_portal_activity"
+	},
+	"field_name": {
+		"value": "activity",
+		"displayValue": "activity"
+	},
+	"display_field": {
+		"value": "display_title",
+		"displayValue": "display_title"
+	},
+	"filter_condition": {
+		"value": "active=true",
+		"displayValue": "Only Display Active Activities"
+	},
+	"facet_key": {
+		"value": "activity",
+		"displayValue": "activity"
+	},
+	"dependency_key": {
+		"value": "activity_group",
+		"displayValue": "activity_group"
+	},
+	"order_field": {
+		"value": "order",
+		"displayValue": "order"
+	}    
+}]]></widget_parameters>
+    </sp_instance>
+</record_update>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Activity" max_length="40" name="x_baes2_qi_portal_activity" type="collection">
+        <element label="Active" mandatory="true" max_length="40" name="active" type="boolean"/>
+        <element label="Activity Group" mandatory="true" max_length="32" name="activity_group" reference="x_baes2_qi_portal_activity_group" type="reference"/>
+        <element label="Delegates" max_length="4000" name="delegates" reference="sys_user" type="glide_list"/>
+        <element label="Description" max_length="1000" name="description" type="string_full_utf8"/>
+        <element display="true" label="Display Title" max_length="255" name="display_title" read_only="true" type="string_full_utf8"/>
+        <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element label="Order" max_length="40" name="order" type="integer"/>
+        <element label="Owner" mandatory="true" max_length="32" name="owner" reference="sys_user" type="reference"/>
+        <element label="Title" mandatory="true" max_length="100" name="title" type="string_full_utf8"/>
+        <index name="index">
+            <element name="owner"/>
+        </index>
+        <index name="index2">
+            <element name="activity_group"/>
+        </index>
+    </element>
+</database>

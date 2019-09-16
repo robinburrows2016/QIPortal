@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($rootScope) {
+  /* widget controller */
+	var c = this;
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.legends-section {&#13;
+  /*text-align: center;*/&#13;
+  padding-left: 0px;&#13;
+  overflow-y:hidden;&#13;
+}&#13;
+&#13;
+.legends-section:hover {&#13;
+  overflow-y:auto;&#13;
+}&#13;
+&#13;
+.legend-representation {&#13;
+  height: 25px;&#13;
+  width: 20.75px;&#13;
+  margin-right : 5px;&#13;
+  border-radius: 3px;  &#13;
+  display:inline-block;&#13;
+  vertical-align: middle;&#13;
+}&#13;
+&#13;
+.month {&#13;
+  float: left;&#13;
+  margin: 0px 1px 0px 1px; &#13;
+  width: 20.75px; &#13;
+  max-width: 20.75px; &#13;
+  min-width: 20.75px; &#13;
+  height: 25px; &#13;
+  border-radius: 3px;&#13;
+  text-align: center;&#13;
+}&#13;
+&#13;
+.legend-block {&#13;
+  /*display:inline-block;*/&#13;
+  margin: 10px 10px 10px 0px;&#13;
+  /*cursor:pointer;*/&#13;
+}&#13;
+&#13;
+.legend-label {&#13;
+  verticle-align: middle;&#13;
+}&#13;
+&#13;
+.legend-block-excluded {&#13;
+  color:#e6e8ea;&#13;
+}&#13;
+.panel-heading {&#13;
+    padding-top: 10px;&#13;
+    padding-bottom: 10px;&#13;
+    padding-left: 15px;&#13;
+    padding-right: 15px;&#13;
+    border-bottom: 1px solid transparent;&#13;
+    border-top-right-radius: 3px;&#13;
+    border-top-left-radius: 3px;&#13;
+}&#13;
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description>Display a list of the Status Legends</description>
+        <docs/>
+        <field_list>title,color</field_list>
+        <has_preview>false</has_preview>
+        <id>quality_improvement_legends</id>
+        <internal>false</internal>
+        <link/>
+        <name>Quality Improvement - Legends</name>
+        <option_schema>[{"hint":"Number of item cards in the widget","name":"limit","section":"Presentation","default_value":"8","label":"Number of Items","type":"integer"},{"hint":"Panel column width in the widget","name":"panelWidth","section":"Presentation","default_value":"4","label":" Panel column width","type":"integer"},{"hint":"Home page Challenges?","name":"homePage","default_value":"false","label":"Home Page Specific Challenges","type":"boolean"},{"hint":"Show my recent items by view or request","name":"recent_by","section":"Behavior","default_value":"view","label":"My Recent Items By","type":"choice","choices":[{"label":"View","value":"view"},{"label":"Request","value":"request"}]}]</option_schema>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+	// RAG Status
+	data.rag = [];
+	// Current Month Defauls
+	data.current_background_color = '#f1f1f1';
+	data.current_border = '2px solid black';	
+	var q = new GlideRecordSecure('x_baes2_qi_portal_rag_status'); // does ACL checking for us
+	q.addActiveQuery();	
+	q.orderBy('title');
+	q.query();
+	while (q.next()) {
+		if (!q.canRead())
+			continue;
+
+		var item = {};
+		item.sys_id = q.getValue('sys_id');
+		item.number = q.getDisplayValue("number");		
+		item.title = q.getDisplayValue("title");		
+		item.background_color = q.getValue('background_color');
+		item.font_color = q.getValue('font_color');		
+		data.rag.push(item);
+	}
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-09-06 09:19:59</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>a6ff3294dbbfb3407186d3ca4b961919</sys_id>
+        <sys_mod_count>28</sys_mod_count>
+        <sys_name>Quality Improvement - Legends</sys_name>
+        <sys_package display_value="Quality Improvement Portal" source="x_baes2_qi_portal">7b4df9cadb8f7300610f7b47f49619b0</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Quality Improvement Portal">7b4df9cadb8f7300610f7b47f49619b0</sys_scope>
+        <sys_update_name>sp_widget_a6ff3294dbbfb3407186d3ca4b961919</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-09-06 13:21:06</sys_updated_on>
+        <template><![CDATA[<div class="panel panel-default" id="qi_rag_legends">
+  <div class="panel-heading" role="heading" aria-level="1" style="padding-bottom: 10px;">
+    <span class="panel-title">${Legends}</span>
+  </div>
+  <div class="panel-body" style="padding: 5px;">
+    <div class="legends-section">
+      <div class="legend-block" ng-repeat="item in data.rag">
+        <div class="legend-representation" ng-style="{'background-color':item.background_color}"></div>
+        <span class="legend-label">{{item.title}}</span>
+      </div>
+      <div class="legend-block">
+        <div class="legend-representation" ng-style="{'background-color':data.current_background_color, 'border' : data.current_border}"></div>
+        <span class="legend-label">Current Month</span>
+      </div>      
+    </div>
+  </div>  
+</div>]]></template>
+    </sp_widget>
+</record_update>

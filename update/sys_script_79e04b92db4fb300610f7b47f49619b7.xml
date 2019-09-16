@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_label/>
+        <action_name/>
+        <action_query>false</action_query>
+        <action_run_at>server</action_run_at>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <application/>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_baes2_qi_portal_theme</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>Set Theme Display Fields</name>
+        <onclick/>
+        <order>100</order>
+        <priority>100</priority>
+        <read_access_action>false</read_access_action>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+			
+	// Display Title
+	current.display_title = current.getDisplayValue("business_unit") + ' - ' + current.title;
+	
+	// If Background Color Change, Revise Field Styles
+	if ((current.background_color != previous.background_color) || (current.font_color != previous.font_color)) {
+    
+        // Field Styles - Theme
+        var table = "x_baes2_qi_portal_theme";
+        var element = "title";
+        var condition = "javascript: current.sys_id == '" + current.sys_id.toString() + "';";
+        var style = "background-color:" + current.background_color + "; color:" + current.font_color + ";";            
+        setUIStyle(table, element, condition, style);		
+        
+        // Field Styles - Project
+        table = "x_baes2_qi_portal_project";
+        element = "theme";
+        condition = "javascript: current.theme == '" + current.sys_id.toString() + "';";               
+        setUIStyle(table, element, condition, style);
+        
+        // Field Styles - Activity Group
+        table = "x_baes2_qi_portal_activity_group";
+        element = "project";
+        condition = "javascript: current.project.theme == '" + current.sys_id.toString() + "';";               
+        setUIStyle(table, element, condition, style);        
+        
+        // Field Styles - Activity
+        table = "x_baes2_qi_portal_activity";
+        element = "activity_group";
+        condition = "javascript: current.activity_group.project.theme == '" + current.sys_id.toString() + "';";              
+        setUIStyle(table, element, condition, style);
+        
+        // Field Styles - Statistics
+        table = "x_baes2_qi_portal_statistics";
+        element = "activity";
+        condition = "javascript: current.activity.activity_group.project.theme == '" + current.sys_id.toString() + "';";               
+        setUIStyle(table, element, condition, style);        
+	}
+
+	function setUIStyle(table, element, condition, style) {
+
+		var gr = new GlideRecord('sys_ui_style');
+		gr.addQuery('name', table);
+		gr.addQuery('element', element);
+		gr.addQuery('value', 'CONTAINS', current.sys_id.toString());       
+		gr.query();
+
+		var recordExists = gr.next();
+
+		if (!recordExists) {
+			gr.name = table;
+			gr.element = element;
+            gr.value = condition;
+		}
+		gr.style = style;
+
+		if (recordExists)
+			gr.update();
+		else
+			gr.insert();
+	}	
+
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-08-06 07:46:11</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_id>79e04b92db4fb300610f7b47f49619b7</sys_id>
+        <sys_mod_count>19</sys_mod_count>
+        <sys_name>Set Theme Display Fields</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Quality Improvement Portal" source="x_baes2_qi_portal">7b4df9cadb8f7300610f7b47f49619b0</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Quality Improvement Portal">7b4df9cadb8f7300610f7b47f49619b0</sys_scope>
+        <sys_update_name>sys_script_79e04b92db4fb300610f7b47f49619b7</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-08-14 17:14:03</sys_updated_on>
+        <template/>
+        <when>before</when>
+    </sys_script>
+</record_update>

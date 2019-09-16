@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="RAG Status" max_length="40" name="x_baes2_qi_portal_rag_status" type="collection">
+        <element label="Active" mandatory="true" max_length="40" name="active" type="boolean"/>
+        <element label="Background Color" mandatory="true" max_length="7" name="background_color" type="color"/>
+        <element label="Description" max_length="1000" name="description" type="string_full_utf8"/>
+        <element label="Font Color" mandatory="true" max_length="7" name="font_color" type="color"/>
+        <element display="true" label="Title" mandatory="true" max_length="100" name="title" type="string_full_utf8"/>
+    </element>
+</database>

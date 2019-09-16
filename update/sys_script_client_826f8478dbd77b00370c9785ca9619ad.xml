@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description>Change the background color of the Activity / Year based on the selection of the Activity field.&#13;
+Used with a GlideAjax Script Include - QualityImprovementColorHelper</description>
+        <field>activity</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>QI Statistics Colouring</name>
+        <order/>
+        <script><![CDATA[function setStyle(response, elementID) {
+	
+	var style = response.responseXML.documentElement.getAttribute("answer");
+	elementID.setStyle(style) ;
+}
+
+function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+	
+	var tableName = g_form.getTableName();
+	var elementID = g_form.getElement('sys_display.x_baes2_qi_portal_statistics.activity');
+	
+	// Change the background color based on status field.
+	var ajax = new GlideAjax('QualityImprovementColorHelper');
+	ajax.addParam('sysparm_name', 'setActivityColor');
+	ajax.addParam('sysparm_value', newValue);
+	ajax.addParam('sysparm_table_name', tableName);
+	ajax.addParam('sysparm_field_name', 'activity');
+	ajax.getXML(function(response) {
+		setStyle(response, elementID);
+	});
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-08-13 13:14:07</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_id>826f8478dbd77b00370c9785ca9619ad</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>QI Statistics Colouring</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Quality Improvement Portal" source="x_baes2_qi_portal">7b4df9cadb8f7300610f7b47f49619b0</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Quality Improvement Portal">7b4df9cadb8f7300610f7b47f49619b0</sys_scope>
+        <sys_update_name>sys_script_client_826f8478dbd77b00370c9785ca9619ad</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-08-23 10:04:01</sys_updated_on>
+        <table>x_baes2_qi_portal_statistics</table>
+        <type>onChange</type>
+        <ui_type>0</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>

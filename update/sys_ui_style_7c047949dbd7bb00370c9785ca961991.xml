@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_style">
+    <sys_ui_style action="INSERT_OR_UPDATE">
+        <alt/>
+        <element>title</element>
+        <name>x_baes2_qi_portal_theme</name>
+        <style>background-color:#ffbf80; color:#000000;</style>
+        <sys_class_name>sys_ui_style</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-08-14 15:12:09</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>7c047949dbd7bb00370c9785ca961991</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>x_baes2_qi_portal_theme</sys_name>
+        <sys_package display_value="Quality Improvement Portal" source="x_baes2_qi_portal">7b4df9cadb8f7300610f7b47f49619b0</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Quality Improvement Portal">7b4df9cadb8f7300610f7b47f49619b0</sys_scope>
+        <sys_update_name>sys_ui_style_7c047949dbd7bb00370c9785ca961991</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-09-03 13:23:07</sys_updated_on>
+        <value>javascript: current.sys_id == 'b4047949dbd7bb00370c9785ca961991';</value>
+    </sys_ui_style>
+</record_update>

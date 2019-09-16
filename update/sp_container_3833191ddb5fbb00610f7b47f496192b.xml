@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_container">
+    <sp_container action="INSERT_OR_UPDATE">
+        <background_color/>
+        <background_image/>
+        <background_style>default</background_style>
+        <bootstrap_alt>false</bootstrap_alt>
+        <class_name/>
+        <container_class_name/>
+        <name>QI Portal - Container 2</name>
+        <order>2</order>
+        <sp_page display_value="qi_portal">783315dddb1fbb00610f7b47f4961953</sp_page>
+        <subheader>false</subheader>
+        <sys_class_name>sp_container</sys_class_name>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-08-15 07:27:17</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>3833191ddb5fbb00610f7b47f496192b</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>QI Portal - Container 2</sys_name>
+        <sys_package display_value="Quality Improvement Portal" source="x_baes2_qi_portal">7b4df9cadb8f7300610f7b47f49619b0</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Quality Improvement Portal">7b4df9cadb8f7300610f7b47f49619b0</sys_scope>
+        <sys_update_name>sp_container_3833191ddb5fbb00610f7b47f496192b</sys_update_name>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-09-02 08:11:20</sys_updated_on>
+        <title/>
+        <width>container-fluid</width>
+    </sp_container>
+</record_update>
