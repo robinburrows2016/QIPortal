@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_policy">
     <sys_ui_policy action="INSERT_OR_UPDATE">
         <active>true</active>
-        <conditions table="x_baes2_qi_portal_statistics">type=activity^EQ<item endquery="false" field="type" goto="false" newquery="false" operator="=" or="false" value="activity"/>
+        <conditions table="x_baes2_qi_portal_statistics">type=activity^EQ<item display_value="Activity" endquery="false" field="type" goto="false" newquery="false" operator="=" or="false" value="activity"/>
             <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
         </conditions>
         <description/>

@@ -54,16 +54,16 @@
         <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
         <sys_created_on>2019-08-05 09:30:30</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
-        <sys_id>dc8f8e4edbcf7300610f7b47f49619d4</sys_id>
+        <sys_id>07ed31efdb3b7b009a45d0a1ca9619e2</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>x_baes2_qi_portal_activity</sys_name>
         <sys_package display_value="Quality Improvement Portal" source="x_baes2_qi_portal">7b4df9cadb8f7300610f7b47f49619b0</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Quality Improvement Portal">7b4df9cadb8f7300610f7b47f49619b0</sys_scope>
-        <sys_update_name>sys_dictionary_x_baes2_qi_portal_activity_null</sys_update_name>
+        <sys_update_name>sys_dictionary_x_baes2_qi_portal_activity_NULL</sys_update_name>
         <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-08-05 09:30:30</sys_updated_on>
+        <sys_updated_on>2019-09-16 06:51:50</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>

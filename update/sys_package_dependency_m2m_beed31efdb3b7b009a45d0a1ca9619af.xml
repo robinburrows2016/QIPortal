@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_package_dependency_m2m">
+    <sys_package_dependency_m2m action="INSERT_OR_UPDATE">
+        <dependency display_value="ITIL Services" source="com.snc.service">e42bcb806f1301006b8746916e3ee4fa</dependency>
+        <min_version/>
+        <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
+        <sys_created_on>2019-09-16 06:51:39</sys_created_on>
+        <sys_id>beed31efdb3b7b009a45d0a1ca9619af</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_package display_value="Quality Improvement Portal" source="x_baes2_qi_portal">7b4df9cadb8f7300610f7b47f49619b0</sys_package>
+        <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
+        <sys_updated_on>2019-09-16 06:51:39</sys_updated_on>
+    </sys_package_dependency_m2m>
+</record_update>

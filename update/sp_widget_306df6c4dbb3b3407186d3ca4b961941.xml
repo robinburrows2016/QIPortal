@@ -56,8 +56,8 @@
 		// Force reload of widget and hide 'X' close button		
 		c.ideaModalInstance = null;
 		
-		// Create Instance Of The Idea Record Producer Widget - widget-sc-cat-item-v2-bae
-		spUtil.get('widget-sc-cat-item-v3-bae', {sys_id: '480589a2dbba2780561fb29a689619da', sysparm_campaign: sysId}).then(function(response){	
+		// Create Instance Of The Idea Record Producer Widget - widget-sc-cat-item-v4-bae
+		spUtil.get('widget-sc-cat-item-v4-bae', {sys_id: '480589a2dbba2780561fb29a689619da', sysparm_campaign: sysId}).then(function(response){	
 			c.ideaModalInstance = response;
 			c.ideaModalInstance.options = {show_add_cart_button: 'false', show_add_to_wishlist_button: 'true', display_cart_on_right: 'false', show_field_validation_messages: 'true'};
 			c.ideaModalInstance.data.default_variables = '[{"name":"campaign", "value":"' + sysId + '" , "readOnly":"true"}, {"name":"IGNORE", "value":"IGNORE", "readOnly":"false"}]';
@@ -75,8 +75,8 @@
 		// Force reload of widget and hide 'X' close button		
 		c.ideaModalInstance = null;
 		
-		// Create Instance Of The Idea Record Producer Widget - widget-sc-cat-item-v2-bae
-		spUtil.get('widget-sc-cat-item-v3-bae', {sys_id: 'b190ea4cdb503f00610f7b47f4961972', sysparm_campaign: sysId}).then(function(response){	
+		// Create Instance Of The Idea Record Producer Widget - widget-sc-cat-item-v4-bae
+		spUtil.get('widget-sc-cat-item-v4-bae', {sys_id: 'b190ea4cdb503f00610f7b47f4961972', sysparm_campaign: sysId}).then(function(response){	
 			c.ideaModalInstance = response;
 			c.ideaModalInstance.options = {show_add_cart_button: 'false', show_add_to_wishlist_button: 'true', display_cart_on_right: 'false', show_field_validation_messages: 'true'};
 			c.ideaModalInstance.data.default_variables = '[{"name":"campaign", "value":"' + sysId + '" , "readOnly":"true"}, {"name":"IGNORE", "value":"IGNORE", "readOnly":"false"}]';
@@ -454,7 +454,7 @@
         <sys_created_on>2019-09-05 14:30:11</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
         <sys_id>306df6c4dbb3b3407186d3ca4b961941</sys_id>
-        <sys_mod_count>97</sys_mod_count>
+        <sys_mod_count>99</sys_mod_count>
         <sys_name>Quality Improvement - Active Themes</sys_name>
         <sys_package display_value="Quality Improvement Portal" source="x_baes2_qi_portal">7b4df9cadb8f7300610f7b47f49619b0</sys_package>
         <sys_policy/>
@@ -462,7 +462,7 @@
         <sys_scope display_value="Quality Improvement Portal">7b4df9cadb8f7300610f7b47f49619b0</sys_scope>
         <sys_update_name>sp_widget_306df6c4dbb3b3407186d3ca4b961941</sys_update_name>
         <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-09-06 13:20:33</sys_updated_on>
+        <sys_updated_on>2019-11-18 08:21:06</sys_updated_on>
         <template><![CDATA[<div class="recent-widget">
   <div class="panel panel-default">
  	<div class="panel-heading pad-bottom hidden">
@@ -521,8 +521,10 @@
                      </div>
                    </div>
                    <div style="text-align:center; clear:both;">
-                     <div ng-repeat="month in item.months" class="month" ng-style="::{'background-color': month.background_color, 'border' : month.border}" tooltips tooltip-template="{{::month.msg}}"><span ng-style="::{'color': month.font_color}">{{month.target}}</span></div>
-                 	</div>
+                     <div style="text-align:center; display: inline-block">                     
+                     	<div ng-repeat="month in item.months" class="month" ng-style="::{'background-color': month.background_color, 'border' : month.border}" tooltips tooltip-template="{{::month.msg}}"><span ng-style="::{'color': month.font_color}">{{month.target}}</span></div>
+                     </div>
+                   </div>
                    <p>
                      <small>
                        <span ng-if="item.month_name" class="author pad-right text-nowrap">Outstanding for &nbsp; 

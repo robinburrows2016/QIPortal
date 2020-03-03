@@ -4,24 +4,24 @@
         <license_condition/>
         <license_model>none</license_model>
         <license_roles/>
-        <name>x_baes2_qi_portal_theme</name>
+        <name>x_baes2_qi_portal_improvement_tasks</name>
         <op_delete>true</op_delete>
         <op_insert>true</op_insert>
         <op_update>true</op_update>
         <owner_condition/>
         <sys_class_name>ua_table_licensing_config</sys_class_name>
         <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
-        <sys_created_on>2019-08-05 08:48:16</sys_created_on>
+        <sys_created_on>2019-08-13 09:25:13</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
-        <sys_id>39d5c286dbcf7300610f7b47f4961991</sys_id>
+        <sys_id>3eed31efdb3b7b009a45d0a1ca9619b0</sys_id>
         <sys_mod_count>0</sys_mod_count>
-        <sys_name>x_baes2_qi_portal_theme</sys_name>
+        <sys_name>x_baes2_qi_portal_improvement_tasks</sys_name>
         <sys_package display_value="Quality Improvement Portal" source="x_baes2_qi_portal">7b4df9cadb8f7300610f7b47f49619b0</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Quality Improvement Portal">7b4df9cadb8f7300610f7b47f49619b0</sys_scope>
-        <sys_update_name>ua_table_licensing_config_39d5c286dbcf7300610f7b47f4961991</sys_update_name>
+        <sys_update_name>ua_table_licensing_config_3eed31efdb3b7b009a45d0a1ca9619b0</sys_update_name>
         <sys_updated_by>robin.burrows@baesystems.com</sys_updated_by>
-        <sys_updated_on>2019-08-05 08:48:16</sys_updated_on>
+        <sys_updated_on>2019-08-13 09:25:13</sys_updated_on>
     </ua_table_licensing_config>
 </record_update>

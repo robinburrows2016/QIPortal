@@ -11,7 +11,7 @@
         <short_description/>
         <size>md</size>
         <sp_column display_value="2">3033191ddb5fbb00610f7b47f4961928</sp_column>
-        <sp_widget display_value="Search Filter - BAE">380f31dddbdfbb00610f7b47f49619f7</sp_widget>
+        <sp_widget display_value="">380f31dddbdfbb00610f7b47f49619f7</sp_widget>
         <sys_class_name>sp_instance</sys_class_name>
         <sys_created_by>robin.burrows@baesystems.com</sys_created_by>
         <sys_created_on>2019-08-15 07:27:17</sys_created_on>
@@ -55,4 +55,5 @@
 	}
 }]]></widget_parameters>
     </sp_instance>
+    <sys_translated_text action="delete_multiple" query="documentkey=f833191ddb5fbb00610f7b47f4961929"/>
 </record_update>
